@@ -19,12 +19,12 @@ public class RenovationCalculator {
 
     public Renovation calculate(String fileName) {
         List<Room> rooms = roomFileReader.readFile(fileName);
-        long totalWallpaperOder = calculateTotalWallpaperOrder(rooms);
+        long totalWallpaperOrder = calculateTotalWallpaperOrder(rooms);
         LinkedHashSet<Room> cubicRooms = getCubicRooms(rooms);
         Set<Room> duplicateRooms = findDuplicateRooms(rooms);
 
-        logging(totalWallpaperOder, cubicRooms, duplicateRooms);
-        return new Renovation(totalWallpaperOder, cubicRooms, duplicateRooms);
+        logging(totalWallpaperOrder, cubicRooms, duplicateRooms);
+        return new Renovation(totalWallpaperOrder, cubicRooms, duplicateRooms);
     }
 
     private long calculateTotalWallpaperOrder(List<Room> rooms) {

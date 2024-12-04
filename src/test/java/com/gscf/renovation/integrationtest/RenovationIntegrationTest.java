@@ -36,7 +36,7 @@ class RenovationIntegrationTest {
 
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertNotNull(response.getBody());
-		assertEquals(expectedTotalWallPaper, response.getBody().totalSquareFeetOfWallpaper());
+		assertEquals(expectedTotalWallPaper, response.getBody().totalWallpaperOrder());
 		assertEquals(expectedCubicRoomsWithRightOrder, List.copyOf(response.getBody().cubicShapeRooms()));
 		assertEquals(expectedDuplicationRoomsSize, response.getBody().duplicationRooms().size());
 	}

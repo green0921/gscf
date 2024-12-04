@@ -33,7 +33,7 @@ class RenovationCalculatorTest {
 				new Room(3,12,15, 558),
 				new Room(14,6,11, 674)
 		);
-		Renovation expected = new Renovation(
+		Renovation expectedRenovation = new Renovation(
 				1287L,
 				new LinkedHashSet<>(Set.of(new Room(1,1,1, 7))),
 				Set.of(new Room(1,2,3, 24))
@@ -42,7 +42,7 @@ class RenovationCalculatorTest {
 
 		Renovation calculate = renovationCalculator.calculate(fileName);
 
-		assertEquals(calculate, expected);
+		assertEquals(calculate, expectedRenovation);
 	}
 
 }
