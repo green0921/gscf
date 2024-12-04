@@ -8,9 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -35,8 +33,8 @@ class RenovationCalculatorTest {
 		);
 		Renovation expectedRenovation = new Renovation(
 				1287L,
-				new LinkedHashSet<>(Set.of(new Room(1,1,1, 7))),
-				Set.of(new Room(1,2,3, 24))
+				List.of(new Room(1,1,1, 7)),
+				List.of(new Room(1,2,3, 24))
 		);
 		when(roomFileReader.readFile(fileName)).thenReturn(mockRooms);
 

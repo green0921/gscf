@@ -1,6 +1,5 @@
 package com.gscf.renovation.model;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
-public record Renovation (Long totalWallpaperOrder, LinkedHashSet<Room> cubicShapeRooms, Set<Room> duplicationRooms) {}
+public record Renovation (Long totalWallpaperOrder, List<Room> cubicShapeRooms, List<Room> duplicationRooms) {}

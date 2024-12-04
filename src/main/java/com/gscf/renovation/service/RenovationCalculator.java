@@ -20,8 +20,8 @@ public class RenovationCalculator {
     public Renovation calculate(String fileName) {
         List<Room> rooms = roomFileReader.readFile(fileName);
         long totalWallpaperOrder = calculateTotalWallpaperOrder(rooms);
-        LinkedHashSet<Room> cubicRooms = getCubicRooms(rooms);
-        Set<Room> duplicateRooms = findDuplicateRooms(rooms);
+        List<Room> cubicRooms = getCubicRooms(rooms);
+        List<Room> duplicateRooms = findDuplicateRooms(rooms);
 
         logging(totalWallpaperOrder, cubicRooms, duplicateRooms);
         return new Renovation(totalWallpaperOrder, cubicRooms, duplicateRooms);
@@ -33,27 +33,27 @@ public class RenovationCalculator {
                 .sum();
     }
 
-    private LinkedHashSet<Room> getCubicRooms(List<Room> rooms) {
+    private List<Room> getCubicRooms(List<Room> rooms) {
         return rooms.stream()
                 .filter(this::isCubic)
                 .sorted(Comparator.comparingInt(Room::wallpaperOrder).reversed())
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toList());
     }
 
     public boolean isCubic(Room room) {
         return room.length().equals(room.width()) && room.width().equals(room.height());
     }
 
-    private Set<Room> findDuplicateRooms(List<Room> rooms) {
+    private List<Room> findDuplicateRooms(List<Room> rooms) {
         return rooms.stream()
                 .collect(Collectors.groupingBy(room -> room, Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    private void logging(long totalWallpaperOder, Set<Room> cubicRooms, Set<Room> duplicateRooms) {
+    private void logging(long totalWallpaperOder, List<Room> cubicRooms, List<Room> duplicateRooms) {
         String cubicRoomsString = cubicRooms.stream()
                 .map(Room::toString)
                 .collect(Collectors.joining("\n"));
